@@ -18,6 +18,7 @@ class BuildCommand extends Command
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $output->writeln("Coming soon....");
     }
 }
