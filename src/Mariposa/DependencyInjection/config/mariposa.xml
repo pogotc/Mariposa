@@ -3,5 +3,20 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="mariposa.sitebuilder.class">Mariposa\Builder\SiteBuilder</parameter>
+        <parameter key="mariposa.finder.class">Mariposa\Finder\Finder</parameter>
+        <parameter key="symfony.finder.class">Symfony\Component\Finder\Finder</parameter>
+        <parameter key="symfony.filesystem.class">Symfony\Component\Filesystem\Filesystem</parameter>
+    </parameters>
 
+    <services>
+        <service id="mariposa.sitebuilder" class="%mariposa.sitebuilder.class%">
+            <argument type="service" id="mariposa.finder" />
+            <argument type="service" id="mariposa.filesystem" />
+        </service>
+
+        <service id="mariposa.finder" class="%mariposa.finder.class%" />
+        <service id="mariposa.filesystem" class="%symfony.filesystem.class%" />
+    </services>
 </container>

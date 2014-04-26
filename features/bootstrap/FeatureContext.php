@@ -2,9 +2,8 @@
 
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Symfony\Component\Filesystem\Filesystem;
-use Behat\Behat\Tester\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
+use Symfony\Component\Console\Tester\ApplicationTester;
+
 
 /**
  * Behat context class.
@@ -14,6 +13,7 @@ class FeatureContext implements SnippetAcceptingContext
 
     private $filesystem;
     private $testFolderPath;
+    private $applicationTester;
 
     /**
      * Initializes context.
@@ -25,6 +25,10 @@ class FeatureContext implements SnippetAcceptingContext
     {
         $this->filesystem = new Filesystem();
         $this->testFolderPath = __DIR__."/../../_test";
+
+        $application = new \Mariposa\Console\Application("0.1.0");
+        $application->setAutoExit(false);
+        $this->applicationTester = new ApplicationTester($application);
     }
 
     /**
@@ -35,7 +39,6 @@ class FeatureContext implements SnippetAcceptingContext
         if ($this->filesystem->exists($this->testFolderPath)) {
             $this->filesystem->remove($this->testFolderPath);
         }
-
         $this->filesystem->mkdir($this->testFolderPath);
     }
 
@@ -55,7 +58,12 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function iRunMariposaBuild()
     {
-//        throw new PendingException();
+
+        $this->applicationTester->run(array(
+            'build',
+            '--source' => $this->testFolderPath,
+            '--dest' => $this->testFolderPath . '/site'
+        ));
     }
 
     /**
