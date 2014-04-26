@@ -17,6 +17,12 @@ class SiteBuilder
      */
     private $filesystem;
 
+    /**
+     * Constructor.
+     *
+     * @param Finder $finder
+     * @param Filesystem $filesystem
+     */
     public function __construct(Finder $finder, Filesystem $filesystem)
     {
 
@@ -24,6 +30,14 @@ class SiteBuilder
         $this->filesystem = $filesystem;
     }
 
+
+    /**
+     * Builds the site from the files in $sourcePath
+     * and puts the built files into $dest
+     *
+     * @param $sourcePath
+     * @param $dest
+     */
     public function build($sourcePath, $dest)
     {
         $files = $this->finder->getSourceFiles($sourcePath);
