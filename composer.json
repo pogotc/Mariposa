@@ -1,5 +1,6 @@
 {
     "name": "mariposa/mariposa",
+    "type": "project",
     "require": {
         "symfony/console": "~2.1",
         "symfony/filesystem": "~2.4",
