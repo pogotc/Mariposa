@@ -1,0 +1,16 @@
+{
+    "require": {
+        "symfony/console": "~2.1",
+        "symfony/filesystem": "~2.4"
+    },
+    "require-dev": {
+        "behat/behat": "3.0.*@dev",
+        "phpspec/phpspec": "dev-release-2.0"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "autoload": {
+        "psr-0": {"Mariposa\\": "src/"}
+    }
+}
