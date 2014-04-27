@@ -4,7 +4,6 @@ namespace Mariposa\Builder;
 
 use Mariposa\ContentGenerator;
 use Mariposa\Finder\Finder;
-use Mariposa\Model\Post;
 use Mariposa\PathGenerator;
 use Mariposa\PostFactory;
 use Symfony\Component\Filesystem\Filesystem;
