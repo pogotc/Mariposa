@@ -1,4 +1,5 @@
 .idea/
+_test/
 vendor/
 bin/phpspec
 bin/behat

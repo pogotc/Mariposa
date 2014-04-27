@@ -3,6 +3,7 @@
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Tester\ApplicationTester;
+use Behat\Gherkin\Node\TableNode;
 
 
 /**
@@ -91,5 +92,41 @@ class FeatureContext implements SnippetAcceptingContext
         if (strpos($fileContents, $content) === FALSE ){
             throw new \Exception($filename . " does not contain '".$content."'");
         }
+    }
+
+    /**
+     * @Given I have a :arg1 directory
+     */
+    public function iHaveADirectory($directoryName)
+    {
+        if (!$this->filesystem->exists($this->testFolderPath . "/" . $directoryName)) {
+            $this->filesystem->mkdir($this->testFolderPath . "/" . $directoryName);
+        }
+    }
+
+    /**
+     * @Given I have the following post:
+     */
+    public function iHaveTheFollowingPost(TableNode $table)
+    {
+        $headers = $table->getRow(0);
+        $data = $table->getRow(1);
+
+        $post = array();
+
+        foreach ($headers as $key => $header) {
+            $post[$header] = $data[$key];
+        }
+
+        $content = <<<HEREDOC
+---
+title: {$post['title']}
+layout: default
+---
+{$post['content']}
+HEREDOC;
+
+        $filename = $post['date'].".markdown";
+        $this->filesystem->dumpFile($this->testFolderPath . "/posts/".$filename, $content);
     }
 }

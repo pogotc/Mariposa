@@ -9,7 +9,16 @@ class Finder extends BaseFinder
     public function getSourceFiles($sourceFolder)
     {
         return $this->files()
-                    ->name("*.html")
-                    ->in($sourceFolder);
+            ->name("*.html")
+            ->exclude("site")
+            ->in($sourceFolder);
+    }
+
+    public function getPostsFiles($sourceFolder)
+    {
+        return $this->files()
+            ->name("*.markdown")
+            ->exclude("site")
+            ->in($sourceFolder);
     }
 }

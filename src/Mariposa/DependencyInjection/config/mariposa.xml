@@ -6,6 +6,9 @@
     <parameters>
         <parameter key="mariposa.sitebuilder.class">Mariposa\Builder\SiteBuilder</parameter>
         <parameter key="mariposa.finder.class">Mariposa\Finder\Finder</parameter>
+        <parameter key="mariposa.content_generator.class">Mariposa\ContentGenerator</parameter>
+        <parameter key="mariposa.path_generator.class">Mariposa\PathGenerator</parameter>
+        <parameter key="mariposa.post_factory.class">Mariposa\PostFactory</parameter>
         <parameter key="symfony.finder.class">Symfony\Component\Finder\Finder</parameter>
         <parameter key="symfony.filesystem.class">Symfony\Component\Filesystem\Filesystem</parameter>
     </parameters>
@@ -14,9 +17,15 @@
         <service id="mariposa.sitebuilder" class="%mariposa.sitebuilder.class%">
             <argument type="service" id="mariposa.finder" />
             <argument type="service" id="mariposa.filesystem" />
+            <argument type="service" id="mariposa.content_generator" />
+            <argument type="service" id="mariposa.path_generator" />
+            <argument type="service" id="mariposa.post_factory" />
         </service>
 
         <service id="mariposa.finder" class="%mariposa.finder.class%" />
         <service id="mariposa.filesystem" class="%symfony.filesystem.class%" />
+        <service id="mariposa.content_generator" class="%mariposa.content_generator.class%" />
+        <service id="mariposa.path_generator" class="%mariposa.path_generator.class%" />
+        <service id="mariposa.post_factory" class="%mariposa.post_factory.class%" />
     </services>
 </container>
