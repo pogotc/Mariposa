@@ -1,5 +1,6 @@
 {
     "name": "mariposa/mariposa",
+    "license": "MIT",
     "description": "Static site text builder",
     "type": "project",
     "require": {
