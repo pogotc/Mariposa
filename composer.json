@@ -18,6 +18,5 @@
     "autoload": {
         "psr-0": {"Mariposa\\": "src/"}
     },
-    "target-dir": "Mariposa",
     "bin": ["bin/mariposa"]
 }
